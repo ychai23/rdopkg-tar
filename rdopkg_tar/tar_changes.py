@@ -124,6 +124,16 @@ def commit_distgit_amend(suffix):
     git(*cmd, input=message, print_output=True)
 
 
+def check_gitlabuser():
+    # Check for the original commiter username in jenkins env variables.
+    # If it exists, then amend a suffix to the commit.
+    userName = os.environ.get('gitlabUserName')
+    gitlabuserName = os.environ.get('gitlabUserUsername')
+
+    if userName or gitlabuserName:
+        commit_distgit_amend(suffix="GitLab-User: " + gitlabuserName + " " + userName)
+
+
 def main():
     parser = argparse.ArgumentParser(
         formatter_class=argparse.RawDescriptionHelpFormatter,
