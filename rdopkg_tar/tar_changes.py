@@ -129,9 +129,10 @@ def check_gitlabuser():
     # If it exists, then amend a suffix to the commit.
     userName = os.environ.get('gitlabUserName')
     gitlabuserName = os.environ.get('gitlabUserUsername')
+    gitlabuserEmail = os.environ.get('gitlabUserEmail')
 
     if userName or gitlabuserName:
-        commit_distgit_amend(suffix="GitLab-User: " + gitlabuserName + " " + userName)
+        commit_distgit_amend(suffix="GitLab-User: " + gitlabuserName + " (" + userName + ")" + " <" + gitlabuserEmail + ">")
 
 
 def main():
@@ -213,9 +214,10 @@ def main():
     # If it exists, then amend a suffix to the commit.
     userName = os.environ.get('gitlabUserName')
     gitlabuserName = os.environ.get('gitlabUserUsername')
+    gitlabuserEmail = os.environ.get('gitlabUserEmail')
 
     if userName or gitlabuserName:
-        commit_distgit_amend(suffix="GitLab-User: " + gitlabuserName + " " + userName)
+        commit_distgit_amend(suffix="GitLab-User: " + gitlabuserName + " (" + userName + ")" + " <" + gitlabuserEmail + ">")
 
     # Show the final commit
     rdopkg.actions.distgit.actions.final_spec_diff(branch=branch)
